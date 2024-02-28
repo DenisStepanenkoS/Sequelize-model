@@ -16,7 +16,7 @@ PATCH  http://localhost:5000/api/phones/7
 Content-Type: application/json
 
 {
-    "RAMsize": "800"
+    "RAMsize": "200"
 }
 
 #404
