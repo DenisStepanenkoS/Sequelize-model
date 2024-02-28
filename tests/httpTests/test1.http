@@ -1,0 +1,35 @@
+#201
+POST http://localhost:5000/api/phones
+Content-Type: application/json
+
+{
+    "model": "S21 Ultra",
+    "brand": "Samsung",
+    "dateManufacture": "2020-10-05"
+}
+
+#200
+GET  http://localhost:5000/api/phones
+
+#200
+PATCH  http://localhost:5000/api/phones/7
+Content-Type: application/json
+
+{
+    "RAMsize": "800"
+}
+
+#404
+PATCH  http://localhost:5000/api/phones/200
+Content-Type: application/json
+
+{
+    "model": "X10",
+    "brand": "Iphone" 
+}
+
+#204
+DELETE http://localhost:5000/api/phones/2
+
+#404
+DELETE http://localhost:5000/api/phones/200
