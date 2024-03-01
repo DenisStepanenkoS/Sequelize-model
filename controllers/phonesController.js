@@ -1,11 +1,11 @@
 const { Op } = require('sequelize');
 const createError = require('http-errors');
-const { phones } = require('../models/index');
+const { Phone } = require('../models/index');
 
 module.exports.getPhoneById = async (req, res, next) => {
   try {
     const { id } = req.params;
-    const foundPhone = await phones.findAll({ where: { id: id } });
+    const foundPhone = await Phone.findAll({ where: { id: id } });
     if(!foundPhone[0]) return next(createError(404,'Phone not found'));
     res.status(200).send(foundPhone);
   } catch (error) {
@@ -16,7 +16,7 @@ module.exports.getPhoneById = async (req, res, next) => {
 module.exports.deletePhone = async (req, res, next) => {
   try {
     const { id } = req.params;
-    const phoneDeleted = await phones.destroy({
+    const phoneDeleted = await Phone.destroy({
       where: { id: id },
       returning: true,
     });
@@ -32,7 +32,7 @@ module.exports.updatePhone = async (req, res, next) => {
   try {
     const { body } = req;
     const { id } = req.params;
-    const newPhone = await phones.update(body, {
+    const newPhone = await Phone.update(body, {
       where: {
         id: id,
       },
@@ -51,7 +51,7 @@ module.exports.createPhone = async (req, res, next) => {
   try {
     const { body } = req;
 
-    const newPhone = await phones.create(body);
+    const newPhone = await Phone.create(body);
     if (!newPhone) return next(createError(400, 'Somethin went wrong'));
 
     const preparedPhone = { ...newPhone.get() };
@@ -69,7 +69,7 @@ module.exports.getPhones = async (req, res, next) => {
     const limit = req.query.limit || 10;
     const page = req.query.page || 1;
 
-    const foundPhones = await phones.findAll({
+    const foundPhones = await Phone.findAll({
       limit: parseInt(limit),
       offset: limit * (page - 1),
       attributes: {
