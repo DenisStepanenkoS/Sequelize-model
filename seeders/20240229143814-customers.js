@@ -4,34 +4,35 @@
 module.exports = {
   async up (queryInterface, Sequelize) {
     await queryInterface.bulkInsert(
-      'phones',
+      'customers',
       [
         {
           id: 1,
-          model: 'Iphone 11X',
-          brand: 'apple',
-          date_manufacture: new Date().toISOString(),
-          RAMsize: 2048,
-          cpu: 'ark',
+          firstname: 'Jhon',
+          lastname: 'Morhan',
           created_at: new Date().toISOString(),
           updated_at: new Date().toISOString(),
         },
         {
           id: 2,
-          model: 'S21 Ultra',
-          brand: 'Samsung',
-          date_manufacture: new Date().toISOString(),
-          RAMsize: 2048,
-          cpu: 'dragon',
+          firstname: 'Kendi',
+          lastname: 'Horwood',
           created_at: new Date().toISOString(),
           updated_at: new Date().toISOString(),
-        }
+        },
+        {
+          id: 3,
+          firstname: 'Line',
+          lastname: 'Broski',
+          created_at: new Date().toISOString(),
+          updated_at: new Date().toISOString(),
+        },
       ],
       {}
     );
   },
 
   async down (queryInterface, Sequelize) {
-    await queryInterface.bulkDelete('phones', null, {});
+    await queryInterface.bulkDelete('customers', null, {});
   },
 };

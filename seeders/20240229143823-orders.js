@@ -3,35 +3,39 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up (queryInterface, Sequelize) {
-    await queryInterface.bulkInsert(
-      'phones',
+    queryInterface.bulkInsert(
+      'orders',
       [
         {
           id: 1,
-          model: 'Iphone 11X',
-          brand: 'apple',
-          date_manufacture: new Date().toISOString(),
-          RAMsize: 2048,
-          cpu: 'ark',
+          customer_id: 1,
+          phone_id: 1,
+          amount: 1,
           created_at: new Date().toISOString(),
           updated_at: new Date().toISOString(),
         },
         {
           id: 2,
-          model: 'S21 Ultra',
-          brand: 'Samsung',
-          date_manufacture: new Date().toISOString(),
-          RAMsize: 2048,
-          cpu: 'dragon',
+          customer_id: 2,
+          phone_id: 1,
+          amount: 1,
           created_at: new Date().toISOString(),
           updated_at: new Date().toISOString(),
-        }
+        },
+        {
+          id: 3,
+          customer_id: 3,
+          phone_id: 2,
+          amount: 1,
+          created_at: new Date().toISOString(),
+          updated_at: new Date().toISOString(),
+        },
       ],
       {}
     );
   },
 
   async down (queryInterface, Sequelize) {
-    await queryInterface.bulkDelete('phones', null, {});
+    await queryInterface.bulkDelete('orders', null, {});
   },
 };
