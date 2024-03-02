@@ -6,7 +6,7 @@ module.exports.getPhoneById = async (req, res, next) => {
   try {
     const { id } = req.params;
     const foundPhone = await Phone.findAll({ where: { id: id } });
-    if(!foundPhone[0]) return next(createError(404,'Phone not found'));
+    if (!foundPhone[0]) return next(createError(404, 'Phone not found'));
     res.status(200).send(foundPhone);
   } catch (error) {
     next(error);
@@ -17,8 +17,8 @@ module.exports.deletePhone = async (req, res, next) => {
   try {
     const { id } = req.params;
     const orderDeleted = await Order.destroy({
-      where: {phone_id: id}
-    }) 
+      where: { phone_id: id },
+    });
 
     const phoneDeleted = await Phone.destroy({
       where: { id: id },

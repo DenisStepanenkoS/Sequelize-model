@@ -29,7 +29,12 @@ Content-Type: application/json
 }
 
 #204
-DELETE http://localhost:5000/api/phones/1
+DELETE http://localhost:5000/api/phones/2
 
 #404
 DELETE http://localhost:5000/api/phones/200
+
+
+#200
+GET http://localhost:5000/api/customer/3
+

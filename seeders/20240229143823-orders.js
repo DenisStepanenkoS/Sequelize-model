@@ -30,6 +30,14 @@ module.exports = {
           created_at: new Date().toISOString(),
           updated_at: new Date().toISOString(),
         },
+        {
+          id: 4,
+          customer_id: 3,
+          phone_id: 1,
+          amount: 1,
+          created_at: new Date().toISOString(),
+          updated_at: new Date().toISOString(),
+        },
       ],
       {}
     );
