@@ -1,6 +1,6 @@
 const { Op } = require('sequelize');
 const createError = require('http-errors');
-const { Phone } = require('../models/index');
+const { Phone, Order } = require('../models/index');
 
 module.exports.getPhoneById = async (req, res, next) => {
   try {
@@ -16,6 +16,10 @@ module.exports.getPhoneById = async (req, res, next) => {
 module.exports.deletePhone = async (req, res, next) => {
   try {
     const { id } = req.params;
+    const orderDeleted = await Order.destroy({
+      where: {phone_id: id}
+    }) 
+
     const phoneDeleted = await Phone.destroy({
       where: { id: id },
       returning: true,
