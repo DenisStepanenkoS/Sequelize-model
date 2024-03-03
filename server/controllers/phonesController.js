@@ -54,14 +54,13 @@ module.exports.updatePhone = async (req, res, next) => {
 module.exports.createPhone = async (req, res, next) => {
   try {
     const { body } = req;
-
     const newPhone = await Phone.create(body);
     if (!newPhone) return next(createError(400, 'Somethin went wrong'));
 
     const preparedPhone = { ...newPhone.get() };
     delete preparedPhone.updatedAt;
     delete preparedPhone.createdAt;
-
+    console.log(preparedPhone);
     res.status(201).send(preparedPhone);
   } catch (error) {
     next(error);
@@ -70,9 +69,8 @@ module.exports.createPhone = async (req, res, next) => {
 
 module.exports.getPhones = async (req, res, next) => {
   try {
-    const limit = req.query.limit || 10;
+    const limit = req.query.limit || 100;
     const page = req.query.page || 1;
-
     const foundPhones = await Phone.findAll({
       limit: parseInt(limit),
       offset: limit * (page - 1),
